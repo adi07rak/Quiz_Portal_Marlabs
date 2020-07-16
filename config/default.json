@@ -1,0 +1,6 @@
+{
+    "app_port": 3000,
+    "mongoDB_port": 27017,
+    "mongoDB_host": "mongodb://localhost",
+    "dbName": "quiz_portal" 
+}

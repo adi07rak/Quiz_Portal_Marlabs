@@ -1,0 +1,40 @@
+<div class="modal-dialog text-center">
+  <div class="col-sm-9 main-section">
+    <div class="modal-content">
+     
+      <div class="col-12 form-input mt-4" *ngIf="!updated">
+        <form #registerform="ngForm">
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="updatePass.password"
+              placeholder="Password" #passwordVar="ngModel" (input)="confirmPassword($event)" required />
+            <div *ngIf="passwordVar.invalid && passwordVar.touched" class="errorMessage">
+              <div class="alert alert-danger">Missing Recruiter Name</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="conPassword" name="conPassword" [(ngModel)]="updatePass.conPassword"
+              placeholder="Confirm Password" #conpasswordVar="ngModel" (input)="confirmPassword($event)" required />
+            <div *ngIf="confirmed" class="errorMessage">
+              <div class="alert alert-success">Matched!</div>
+            </div>
+            <div *ngIf="!confirmed && conpasswordVar.model" class="errorMessage">
+              <div class="alert alert-danger">Not Matching!</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-control" [disabled]="!confirmed"
+            (click)="onUpdatePass(updatePass)">Update Password</button>
+        </form>
+      </div>
+
+      <div class="col-12 form-input register" *ngIf="updated">
+        <p>Password updated successfully.<br> Please Login to Continue.</p>
+        <button type="submit" class="btn btn-success form-control"
+            [routerLink]="['/auth']">Login</button>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>

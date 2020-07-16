@@ -1,0 +1,102 @@
+<div class="modal-dialog text-center">
+  <div class="col-sm-9 main-section">
+    <div class="modal-content">
+      <div class="col-12 user-img" *ngIf="!registered">
+        <img src="../../../assets/img/user.png">
+      </div>
+      <div class="col-12 form-input" *ngIf="!registered">
+        <form #registerform="ngForm">
+          <div class="form-group">
+            <input type="text" class="form-control" id="traineeId" name="traineeId" [(ngModel)]="register.traineeId"
+              placeholder="Trainee Id" #traineeIdVar="ngModel" required />
+            <div *ngIf="traineeIdVar.invalid && traineeIdVar.touched" class="errorMessage">
+              <div class="alert alert-danger">Missing Trainee Id</div>
+            </div>
+            <div class="errorMessage" *ngIf="wrongTraineeId">
+              <div class="alert alert-danger">Already Register Id</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 form-group">
+              <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="register.firstName"
+                placeholder="First Name" #firstNameVar="ngModel" required />
+              <div *ngIf="firstNameVar.invalid && firstNameVar.touched" class="errorMessage">
+                <div class="alert alert-danger">Missing First Name</div>
+              </div>
+            </div>
+            <div class="col-6 form-group">
+              <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="register.lastName"
+                placeholder="Last Name" #lastNameVar="ngModel" required />
+              <div *ngIf="lastNameVar.invalid && lastNameVar.touched" class="errorMessage">
+                <div class="alert alert-danger">Missing Last Name</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="register.email"
+              placeholder="Email (xxx@xxx.xxx)" #emailVar="ngModel" required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+            <div *ngIf="emailVar.invalid && emailVar.touched" class="errorMessage">
+              <div class="alert alert-danger">Missing Email (xxx@xxx.xxx) </div>
+            </div>
+            <div class="errorMessage" *ngIf="wrongEmail">
+              <div class="alert alert-danger">Wrong Email</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="recruiterName" name="recruiterName" [(ngModel)]="register.recruiterName"
+              placeholder="Recruiter Name" #recruiterNameVar="ngModel" required />
+            <div *ngIf="recruiterNameVar.invalid && recruiterNameVar.touched" class="errorMessage">
+              <div class="alert alert-danger">Missing Recruiter Name</div>
+            </div>
+          </div>
+
+          <div class="input-group form-group">
+            <select class="custom-select form-control customCss" 
+            id="devDomain" name="devDomain" [(ngModel)]="register.devDomain" placeholder="d.ff">
+              <option hidden [value]="choose"  selected>Select Dev Domain</option>
+              <option value="java">JAVA</option>
+              <option value="ui">UI</option>
+              <option value="bigData">Big Data</option>
+              <option value="dataScience">Data Science</option>
+              <option value="dotNet">DotNet</option>
+            </select>
+            <div *ngIf="devDomainVar" class="errorMessage">
+              <div class="alert alert-danger customCss">Missing Domain</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="register.password"
+              placeholder="Password" #passwordVar="ngModel" required />
+            <div *ngIf="passwordVar.invalid && passwordVar.touched" class="errorMessage">
+              <div class="alert alert-danger">Missing Recruiter Name</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="conPassword" name="conPassword" [(ngModel)]="register.conPassword"
+              placeholder="Confirm Password" #conpasswordVar="ngModel" (input)="confirmPassword($event)" required />
+            <div *ngIf="confirmed" class="errorMessage">
+              <div class="alert alert-success">Matched!</div>
+            </div>
+            <div *ngIf="!confirmed && conpasswordVar.model" class="errorMessage">
+              <div class="alert alert-danger">Not Matching!</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-control" [disabled]="registerform.invalid"
+            (click)="onRegister(register)">SignUp</button>
+        </form>
+      </div>
+
+      <div class="col-12 form-input register" *ngIf="registered">
+        <p>User Account created successfully.<br> Please Login to Continue.</p>
+        <button type="submit" class="btn btn-success form-control"
+            (click)="onrouteToLogin()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

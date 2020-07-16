@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  auth: {
+    login: 'http://localhost:3000/auth/login',
+    signup: 'http://localhost:3000/auth/register',
+    updatePass: 'http://localhost:3000/auth/updatepassword',
+    forgotPass: 'http://localhost:3000/auth/forgot'
+  },
+  quiz: {
+    getalltechnology: 'http://localhost:3000/quiz/getTechnology'
+  }
 };
 
 /*

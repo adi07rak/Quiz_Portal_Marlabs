@@ -1,0 +1,7 @@
+<p>
+  topics works!
+</p>
+
+<select (change)="onchangeTechnology($event)">
+  <option *ngFor="let tech of technologies" id="{{tech.type}}">{{tech.value}}</option>
+</select>
